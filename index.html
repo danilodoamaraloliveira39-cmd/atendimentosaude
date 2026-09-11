@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atendimento Saúde — Protótipo</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #F4F6FA;
+            color: #0A2348;
+        }
+
+        /* TOPO */
+        header {
+            background: #1539AA;
+            border-bottom: 1px solid #D9E1F2;
+            padding: 16px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-symbol {
+            width: 42px;
+            height: 42px;
+            background: #F36C16;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-size: 23px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .prototype {
+            font-size: 11px;
+            color: #777;
+            background: #f0f0f0;
+            padding: 6px 10px;
+            border-radius: 20px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #001F5B, #02173B);
+            color: white;
+            padding: 55px 6%;
+        }
+
+        .hero-content {
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 650px;
+            line-height: 1.6;
+            opacity: .95;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1150px;
+            margin: -35px auto 50px;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+            transition: .2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.12);
+        }
+
+        .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: #EAF0FA;
+            color: #F36C16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            margin-bottom: 18px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 9px;
+        }
+
+        .card p {
+            color: #687681;
+            line-height: 1.5;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background: #F36C16;
+            color: white;
+            padding: 13px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .button:hover {
+            background: #D85D0C;
+        }
+
+        .button.secondary {
+            background: #FFF1E8;
+            color: #F36C16;
+        }
+
+        /* SEGUNDA VIA */
+        .segunda-via {
+            margin-top: 30px;
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.07);
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            font-size: 26px;
+            margin-bottom: 7px;
+        }
+
+        .section-title p {
+            color: #71808b;
+        }
+
+        .boleto-box {
+            background: #f7fafb;
+            border: 1px solid #e4eaed;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .boleto-box h3 {
+            margin-bottom: 8px;
+        }
+
+        .boleto-box p {
+            color: #687681;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .actions .button {
+            width: auto;
+            min-width: 190px;
+        }
+
+        /* SERVIÇOS */
+        .services {
+            margin-top: 30px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .service {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            border: 1px solid #e7ebed;
+        }
+
+        .service strong {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .service span {
+            color: #7a858c;
+            font-size: 13px;
+        }
+
+        /* ATENDIMENTO */
+        .contact {
+            margin-top: 30px;
+            background: #02173B;
+            color: white;
+            border-radius: 16px;
+            padding: 35px;
+        }
+
+        .contact h2 {
+            margin-bottom: 10px;
+        }
+
+        .contact p {
+            color: #d6dfe3;
+            margin-bottom: 25px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,.08);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .contact-item small {
+            display: block;
+            color: #aebdc4;
+            margin-bottom: 6px;
+        }
+
+        .contact-item strong {
+            font-size: 17px;
+        }
+
+        /* BOTÃO FLUTUANTE WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0,0,0,.25);
+            z-index: 999;
+            transition: .25s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #1eb954;
+        }
+
+        /* AVISO */
+        .notice {
+            margin-top: 25px;
+            padding: 18px;
+            background: #fff8e6;
+            border: 1px solid #f2dfad;
+            border-radius: 10px;
+            color: #6f5a24;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background: white;
+            border-top: 1px solid #D9E1F2;
+            padding: 30px 6%;
+            text-align: center;
+            color: #7c878d;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #F36C16;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.55);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 480px;
+            width: 100%;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 12px;
+        }
+
+        .modal-content p {
+            color: #687681;
+            line-height: 1.5;
+            margin-bottom: 22px;
+        }
+
+        .close {
+            margin-top: 10px;
+            background: transparent;
+            border: none;
+            color: #777;
+            cursor: pointer;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 14px 5%;
+            }
+
+            .prototype {
+                display: none;
+            }
+
+            .hero {
+                padding: 40px 5%;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .container {
+                margin-top: -20px;
+            }
+
+            .segunda-via,
+            .contact {
+                padding: 25px 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .actions .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <div class="logo-symbol">G</div>
+        <div class="logo-text">Saúde</div>
+    </div>
+
+    <div class="prototype">
+        Protótipo independente
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Olá, beneficiário(a)!</h1>
+
+        <p>
+            Acesse rapidamente serviços de atendimento,
+            informações sobre seu plano e canais oficiais
+            da Saúde.
+        </p>
+
+    </div>
+
+</section>
+
+
+<main class="container">
+
+
+    <!-- PRINCIPAIS SERVIÇOS -->
+
+    <section class="cards">
+
+        <div class="card">
+
+            <div class="icon">▣</div>
+
+            <h2>2ª via de boleto</h2>
+
+            <p>
+                Consulte seus boletos e informações financeiras
+                diretamente pelo ambiente oficial do beneficiário.
+            </p>
+
+            <a
+                class="button"
+                href="https://wa.me/5514920030892?text=Ol%C3%A1!%20Quero%20emitir%20a%202%C2%AA%20via%20do%20meu%20boleto%20da%20Saúde"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Acessar área oficial
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">☎️</div>
+
+            <h2>Atendimento</h2>
+
+            <p>
+                Tire dúvidas sobre seu plano, cobertura,
+                rede credenciada e outros serviços.
+            </p>
+
+            <a
+                class="button"
+                href="https://wa.me/5514920030892?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20sobre%20meu%20plano%20Saúde"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Falar com a Saúde
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">⌕</div>
+
+            <h2>Rede credenciada</h2>
+
+            <p>
+                Consulte hospitais, clínicas, laboratórios,
+                médicos e demais prestadores.
+            </p>
+
+            <a
+                class="button"
+                href="https://wa.me/5514920030892?text=Ol%C3%A1!%20Quero%20consultar%20a%20rede%20credenciada%20Saúde"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Consultar rede
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- SEGUNDA VIA -->
+
+    <section class="segunda-via">
+
+        <div class="section-title">
+
+            <h2>2ª via e informações financeiras</h2>
+
+            <p>
+                Acesse os canais oficiais para consultar
+                boletos e informações financeiras.
+            </p>
+
+        </div>
+
+
+        <div class="boleto-box">
+
+            <h3>Emissão de boleto</h3>
+
+            <p>
+                Para sua segurança, a consulta e emissão de
+                boletos devem ser realizadas no ambiente oficial
+                da Saúde.
+            </p>
+
+            <div class="actions">
+
+                <a
+                    class="button"
+                    href="https://wa.me/5514920030892?text=Ol%C3%A1!%20Quero%20emitir%20a%202%C2%AA%20via%20do%20meu%20boleto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Emitir / consultar boleto
+                </a>
+
+                <a
+                    class="button secondary"
+                    href="https://wa.me/5514920030892?text=Ol%C3%A1!%20Preciso%20de%20ajuda"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Preciso de ajuda
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVIÇOS -->
+
+    <section class="services">
+
+        <div class="section-title">
+
+            <h2>Serviços para beneficiários</h2>
+
+            <p>
+                Encontre os principais serviços disponibilizados
+                pela Saúde.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+            <div class="service">
+                <strong>Carteirinha</strong>
+                <span>Acesso ao cartão digital do beneficiário.</span>
+            </div>
+
+            <div class="service">
+                <strong>Ficha financeira</strong>
+                <span>Consulte informações financeiras.</span>
+            </div>
+
+            <div class="service">
+                <strong>Reembolso</strong>
+                <span>Informações e acompanhamento.</span>
+            </div>
+
+            <div class="service">
+                <strong>Rede credenciada</strong>
+                <span>Encontre prestadores e unidades.</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ATENDIMENTO -->
+
+    <section class="contact">
+
+        <h2>Central de Atendimento</h2>
+
+        <p>
+            Consulte os canais oficiais disponibilizados
+            pela Saúde.
+        </p>
+
+
+        <div class="contact-grid">
+
+            <div class="contact-item">
+
+                <small>Telefone</small>
+
+                <strong>0800 728 8300</strong>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <small>Atendimento</small>
+
+                <strong>24 horas</strong>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <small>Atendimento digital</small>
+
+                <strong>Chat / WhatsApp</strong>
+
+                <a
+                    class="button"
+                    href="https://wa.me/5514920030892?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20atendente"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="margin-top:12px;"
+                >
+                    Falar no WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+
+    <a
+        class="whatsapp-float"
+        href="https://wa.me/5514920030892?text=Ol%C3%A1!%20Preciso%20de%20atendimento"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Falar no WhatsApp"
+    >
+        &#128172;
+    </a>
+
+
+    <!-- AVISO -->
+
+    <div class="notice">
+
+        <strong>Segurança:</strong>
+
+        Esta página é um protótipo independente e não é o
+        portal oficial de Saúde. Não informe senha,
+        código de autenticação ou dados bancários nesta página.
+        Para serviços do beneficiário, utilize os canais oficiais
+        da Saúde.
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+    <strong>Saúde — Protótipo de interface</strong>
+
+    <br><br>
+
+    Para informações oficiais, utilize os canais disponibilizados
+    no site oficial da Saúde.
+
+</footer>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-content">
+
+        <h2>Acesso seguro</h2>
+
+        <p>
+            Você será direcionado para um canal oficial da
+            Saúde. Não compartilhe sua senha ou códigos
+            de autenticação com terceiros.
+        </p>
+
+        <a
+            class="button"
+            href="https://wa.me/5514920030892?text=Ol%C3%A1!%20Quero%20continuar%20meu%20atendimento"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Continuar
+        </a>
+
+        <button
+            class="close"
+            onclick="fecharModal()"
+        >
+            Fechar
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function abrirModal() {
+        document.getElementById("modal").classList.add("active");
+    }
+
+    function fecharModal() {
+        document.getElementById("modal").classList.remove("active");
+    }
+
+</script>
+
+</body>
+</html>
